@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <fieldset id="login" style="width: 0px;">
+            <legend>Login:</legend>
+            <label for="userName">User Name:</label>
+            <input type="text" id="userName">
+            <br><br>
+            <label for="userPassword">Password:</label>
+            <input type="password" id="userPassword">
+            <br><br>
+            <button type="button" id="btnLogin" onclick="logMeIn();">Login</button>
+        </fieldset>
+        <br><br>
+        <fieldset id="data" style="width: 250px;" disabled>
+            <legend>Employee:</legend>
+            <input type="radio" id="rbFullTime" name="empStatus" value="full time" checked>
+            <label for="rbFullTime">Full Time</label>
+            <input type="radio" id="rbPartTime" name="empStatus" value="part time">
+            <label for="rbPartTime">Part Time</label>
+            <br><br>
+            <input type="checkbox" id="cbMedical" name="HealthCare" value="Medical" checked>
+            <label for="cbMedical">Medical</label>
+            <br>
+            <input type="checkbox" id="cbDental" name="HealthCare" value="Dental" >
+            <label for="cbDental">Dental</label>
+            <br>
+            <input type="checkbox" id="cbVision" name="HealthCare" value="Vision" >
+            <label for="cbVision">Vision</label>
+            <br>
+            <button type="button" id="btnStore" onclick="store();">Store</button>
+        </fieldset>      
+        <br><br>  
+    </form>
+    <p id="myOutput"></p>
+    <script>
+        function logMeIn()
+        {
+            const txtUserName = "admin";
+            const txtPassword = "LetMeIn";
+
+            if(txtUserName == document.getElementById("userName").value)
+            {
+                if (txtPassword == document.getElementById("userPassword").value)
+                {
+                    document.getElementById("login").disabled = true;
+                    document.getElementById("data").disabled = false;
+                }
+                else
+                {
+                    alert("Password is incorrect");
+                    document.getElementById("userPassword").focus();
+                    document.getElementById("userPassword").select();
+                }
+            }
+            else
+            {
+                alert("User Name is incorrect!");
+                document.getElementById("userName").focus();
+            }
+        }
+        function store()
+        {
+            if (document.getElementById("rbFullTime").checked)
+            {
+                alert(document.getElementById("rbFullTime").value);
+            }
+            else
+            {
+                alert(document.getElementById("rbPartTime").value);
+            }
+            if (document.getElementById("cbMedical").checked)
+            {
+                alert(document.getElementById("cbMedical").value)
+            }
+            if (document.getElementById("cbDental").checked)
+            {
+                alert(document.getElementById("cbDental").value)
+            }
+            if (document.getElementById("cbVision").checked)
+            {
+                alert(document.getElementById("cbVision").value)
+            }
+            document.getElementById("login").disabled = false;
+            document.getElementById("data").disabled = true;
+        }
+    </script>
+</body>
+</html>

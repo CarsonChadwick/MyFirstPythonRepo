@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <fieldset style="width: 0px;" id="fdInfo">
+            <legend>Pokemon Info</legend>
+                <label for="pkName">Name:</label>
+                <input type="text" id="pkName" autofocus>
+                <br><br>
+                <label for="pkDesc">Description</label>
+                <textarea id="pkDesc" rows="5" cols="30" maxlength="200"></textarea>
+                <br><br>
+                <button type="button" id="btnStore" onclick="storePoke();">Store</button>
+                <br><br>
+                <button type="button" id="btnProcess" onclick="processPoke();">Process</button>
+        </fieldset>
+    </form>
+    <br><br>
+    <form>
+        <fieldset style="width: 0px;" disabled id="fdPower">
+            <legend>Pokemon Power:</legend>
+                <select name="pkPower" id="pkPower">
+                </select>
+                <br><br>
+                <button type="button" id="btnPower" onclick="processPower();">Click Me</button>
+        </fieldset>
+        <br><br>
+        <label>Description:</label>
+        <p id="myOutput"></p>
+    </form>
+    <script>
+        let asPoke = new Array();
+        let asDesc = new Array();
+
+        function storePoke()
+        {
+          asPoke.push(document.getElementById("pkName").value) ;
+          asDesc.push(document.getElementById("pkDesc").value) ;
+
+          document.getElementById("pkName").value = "";
+          document.getElementById("pkDesc").value = "";
+
+          document.getElementById("pkName").focus();
+        }
+
+        function processPoke()
+        {
+            if (asPoke.length > 0)
+            {
+                document.getElementById("fdInfo").disabled = true;
+                document.getElementById("fdPower").disabled = false;
+
+                for (let iCount = 0; iCount < asPoke.length; iCount++)
+                {
+                    document.getElementById("pkPower").options.add(new Option(asPoke[iCount], iCount));
+                }
+            }
+        }
+
+        function processPower()
+        {
+            document.getElementById("fdInfo").disabled = false;
+            document.getElementById("fdPower").disabled = true;
+
+            document.getElementById("myOutput").innerHTML = asDesc[document.getElementById("pkPower").value];
+
+            asPoke = [];
+            asDesc = [];
+
+            document.getElementById("pkPower").length = 0;   
+        }
+    </script>
+</body>
+</html>

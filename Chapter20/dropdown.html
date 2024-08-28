@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <fieldset style="width: 300px">
+            <legend>Office Information</legend>
+                <label for="listOffice">Office</label>
+                <select name="listOffice" id="listOffice">
+                    <option value="Dallas">Dallas</option>
+                    <option value="New York">New York</option>
+                    <option value="Seattle">Seattle</option>
+                </select>
+                <br><br>
+                <label for="dtEstablish">Year Office Established</label>
+                <input type="date" id="dtEstablish" name="dtEstablish" value="2021-12-25"
+                        max="2022-06-30" onkeydown="return false" >
+                <br><br>
+                <label for="txtEmps">Number of current employees?</label>
+                <input type="number" id="txtEmps" name="txtEmps" value="1" style="width: 50px;">
+                <br><br>
+                <label for="txtRating">Customer serivce Rating:</label>
+                <input type="range" name="txtRating" id="txtRating" min="0" max="5">
+                <button type="button" onclick="displayData();">Submit</button>
+        </fieldset>
+    </form>
+    <br><br>
+    <p id="myOutput"></p>
+    <script>
+        document.getElementById('dtEstablish').setAttribute('min', '1990-10-01');
+        function displayData()
+        {
+            let sOutPut = "";
+            sOutPut += "Office code: " + document.getElementById("listOffice").value;
+            sOutPut += "<br>Established: " + document.getElementById("dtEstablish").value;
+            sOutPut += "<br># Current Employees: " + document.getElementById("txtEmps").value;
+            sOutPut += "<br>Customer Service Rating: " + document.getElementById("txtRating").value;
+
+            document.getElementById("myOutput").innerHTML = sOutPut;
+        }
+    </script>
+</body>
+</html>
